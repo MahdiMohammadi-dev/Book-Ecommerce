@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\Authors\" />
+    <Folder Include="Services\Authors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KetabSara.DataLayer\KetabSara.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>

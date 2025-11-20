@@ -6,5 +6,5 @@ public interface IBookRepository
     Task Edit(Models.Book book);
     Task Delete(int id);
     Task<IEnumerable<Models.Book>> getAllBooks();
-    Models.Book findBookBy(int id);
+    Task<Models.Book> findBookBy(int id);
 }

@@ -44,9 +44,9 @@ namespace KetabSara.DataLayer.Repositories.Book;
             return await _context.Books.ToListAsync();
         }
 
-        public Models.Book findBookBy(int id)
+        public async Task<Models.Book> findBookBy(int id)
         {
-            var entity = _context.Books.FirstOrDefault(x => x.Id == id);
+            var entity = await _context.Books.FirstOrDefaultAsync(x => x.Id == id);
             if (entity == null)
                 return null;
             return entity;
