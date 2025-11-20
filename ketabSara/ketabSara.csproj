@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KetabSara.CoreLayer\KetabSara.CoreLayer.csproj" />
     <ProjectReference Include="..\KetabSara.DataLayer\KetabSara.DataLayer.csproj" />
   </ItemGroup>
 

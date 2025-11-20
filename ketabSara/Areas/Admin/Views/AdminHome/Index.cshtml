@@ -1,12 +1,75 @@
-﻿
+﻿@model List<KetabSara.CoreLayer.DTO.Authors.AuthorDto>
 @{
     ViewData["PageTitle"] = "صفحه اصلی";
+    ViewData["SelectedItem"] = "index";
 }
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="py-3 breadcrumb-wrapper mb-4">صفحه 1</h4>
    
     
+
+    <div class="card" style="margin-top:120px">
+        <h5 class="card-header heading-color">لیست نویسندگان</h5>
+        <div class="table-responsive text-nowrap" style="padding-bottom:80px;">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>نام</th>
+                    <th>نام خانوادگی</th>
+                    <th>لیست کتابها</th>
+                        
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                <tr>
+                    <td><i class="align-middle fab fa-angular fa-lg text-danger me-3"></i> <strong>پروژه انگولار</strong></td>
+                    <td>مهدی</td>
+                    <td>
+                        محمدی
+                    </td>
+                    <td><span class="badge bg-label-primary me-1">فعال</span></td>
+                </tr>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+
+    @* BooksList *@
+   
+    <div class="card" style="margin-top:80px">
+        <h5 class="card-header heading-color">لیست کتابها</h5>
+        <div class="table-responsive text-nowrap" style="padding-bottom:80px;">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>نام کتاب</th>
+                        <th>نویسنده</th>
+                        <th>قیمت</th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                <tr>
+                    <td>1</td>
+                    <td>صدسال تنهایی</td>
+                    <td>گابریل گارسیا مارکز</td>
+                    <td>
+                        20000 تومان
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 
 
 </div>
