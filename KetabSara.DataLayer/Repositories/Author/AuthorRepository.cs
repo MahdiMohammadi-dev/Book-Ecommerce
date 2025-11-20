@@ -30,9 +30,9 @@ public class AuthorRepository : IAuthorRepository
         await _context.SaveChangesAsync();
     }
 
-    public Models.Author getAuthorById(int id)
+    public async Task<Models.Author> getAuthorById(int id)
     {
-        var entity = _context.Authors.FirstOrDefault(x => x.Id == id);
+        var entity =await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null)
             return null;
         var model = new Models.Author()
