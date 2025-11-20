@@ -1,3 +1,4 @@
+using KetabSara.CoreLayer.Config;
 using KetabSara.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,10 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("KetabSaraDB")));
+
+builder.Services.AddApplicationService();
+
+
 
 var app = builder.Build();
 

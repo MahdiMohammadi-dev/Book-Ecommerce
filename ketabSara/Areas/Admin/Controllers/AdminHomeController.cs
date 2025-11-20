@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ketabSara.Areas.Admin.Models.Dashboard;
+using KetabSara.CoreLayer.Services.Authors;
+using KetabSara.CoreLayer.Services.Books;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ketabSara.Areas.Admin.Controllers
 {
@@ -6,9 +9,23 @@ namespace ketabSara.Areas.Admin.Controllers
 
     public class AdminHomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IAuthorService _authorService;
+        private readonly IBookService _bookService;
+
+        public AdminHomeController(IAuthorService authorService, IBookService bookService)
         {
-            return View();
+            _authorService = authorService;
+            _bookService = bookService;
+        }
+
+        public async  Task<IActionResult> Index()
+        {
+            var dashboardViewModel = new AdminDashboardViewModel
+            {
+                BookDtos =await _bookService.GetBooks(),
+                AuthorDtos = await _authorService.GetAuthors(),
+            };
+            return View(dashboardViewModel);
         }
     }
 }
