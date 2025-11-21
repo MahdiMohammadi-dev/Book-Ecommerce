@@ -16,9 +16,23 @@ namespace ketabSara.Areas.Admin.Controllers
             _authorService = authorService;
         }
 
-        public IActionResult Index()
+        public async Task <IActionResult> Index()
         {
-            return View();
+            var authorList = await _authorService.GetAuthors();
+            List<AuthorViewModel> authorListViewModel = new List<AuthorViewModel>();
+            foreach (var author in authorList)
+            {
+                authorListViewModel.Add(new AuthorViewModel
+                    {
+                        Id = author.Id,
+                        Name = author.Name,
+                        Family = author.Family,
+
+                    }
+                );
+            }
+
+            return View(authorListViewModel);
         }
 
         public IActionResult Create()
