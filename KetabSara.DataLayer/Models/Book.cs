@@ -1,4 +1,6 @@
-﻿namespace KetabSara.DataLayer.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace KetabSara.DataLayer.Models;
 
 public class Book
 {
@@ -9,6 +11,7 @@ public class Book
     public string ImageName { get; set; }
 
     public int AuthorId { get; set; }
+    [ForeignKey("AuthorId")]
     public Author Author { get; set; }
 
 }

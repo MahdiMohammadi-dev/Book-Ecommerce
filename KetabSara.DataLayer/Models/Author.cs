@@ -10,8 +10,6 @@ public class Author
 
 
 
-    public int BookId { get; set; }
-    [ForeignKey("BookId")]
     public ICollection<Book> Books { get; set; }
 
 }

@@ -1,4 +1,7 @@
-﻿@{
+﻿@model List<ketabSara.Areas.Admin.Models.Book.BookViewModel>
+
+
+@{
     ViewData["PageTitle"] = "لیست کتابها";
     ViewData["SelectedItem"] = "booklist";
 
@@ -8,7 +11,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
 
     <div class="mt-4">
-        <button type="button" class="btn btn-label-info rounded-2">ثبت کتاب جدید</button>
+        <a class="btn btn-label-info rounded-2" asp-area="Admin" asp-controller="Book" asp-action="Create">ثبت کتاب جدید</a>
     </div>
 
     <div class="card" style="margin-top:120px">
@@ -25,25 +28,30 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                <tr>
-                    <td>1</td>
-                    <td>صدسال تنهایی</td>
-                    <td>گابریل گارسیا مارکز</td>
-                    <td>
-                        30000 تومان
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> ویرایش</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> حذف</a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                @{
+                    foreach (var bookViewModel in Model)
+                    {
+                        <tr>
+                            <td>@bookViewModel.Id</td>
+                            <td>@bookViewModel.Title</td>
+                            <td>گابریل گارسیا مارکز</td>
+                            <td>
+                                @bookViewModel.price تومان
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> ویرایش</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> حذف</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
                 </tbody>
             </table>
         </div>

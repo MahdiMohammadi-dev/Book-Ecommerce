@@ -21,6 +21,7 @@ public class BookService : IBookService
             Title = createBookDto.Title,
             Description = createBookDto.Description,
             Price = createBookDto.Price,
+            ImageName = createBookDto.ImageName,
         };
         await _bookRepository.Create(bookDto);
         return new OperationResult(true, "کتاب با موفقیت اضافه شد");

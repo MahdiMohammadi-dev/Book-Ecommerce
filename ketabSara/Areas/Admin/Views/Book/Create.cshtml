@@ -1,0 +1,38 @@
+﻿@model ketabSara.Areas.Admin.Models.Book.CreateBookViewModel
+
+<div class="container-md">
+    <div class="col-md">
+        <div class="card">
+            <h5 class="card-header heading-color">ایجاد کتاب جدید</h5>
+            <div class="card-body">
+                <form method="post" class="needs-validation" asp-area="Admin" asp-controller="Book" asp-action="CreateBook">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Title"></label>
+                        <input type="text" class="form-control" placeholder="عنوان کتاب" asp-for="Title">
+                        <span asp-validation-for="Title" class="text-danger mt-4"></span>
+                        <br />
+                        <label class="form-label" asp-for="Author"></label>
+                        <input type="text" class="form-control" placeholder="نویسنده کتاب" asp-for="Author">
+                        <span asp-validation-for="Author" class="text-danger mt-4"></span>
+                        <br />
+                        <label class="form-label" asp-for="Price"></label>
+                        <input type="text" class="form-control" placeholder="قیمت کتاب" asp-for="Price">
+                        <span asp-validation-for="Price" class="text-danger mt-4"></span>
+                        <br />
+                        <div>
+                            <label class="form-label" asp-for="Description"></label>
+                            <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+                        </div>
+                        <span asp-validation-for="Description" class="text-danger mt-4"></span>
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -29,9 +29,6 @@ namespace KetabSara.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Family")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -56,9 +53,6 @@ namespace KetabSara.DataLayer.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -76,7 +70,7 @@ namespace KetabSara.DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("AuthorId");
 
                     b.ToTable("Books");
                 });
@@ -85,7 +79,7 @@ namespace KetabSara.DataLayer.Migrations
                 {
                     b.HasOne("KetabSara.DataLayer.Models.Author", "Author")
                         .WithMany("Books")
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
