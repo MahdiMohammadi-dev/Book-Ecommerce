@@ -1,7 +1,10 @@
-﻿using ketabSara.Areas.Admin.Models.Book;
+﻿using ketabSara.Areas.Admin.Models.Author;
+using ketabSara.Areas.Admin.Models.Book;
 using KetabSara.CoreLayer.DTO.Books;
+using KetabSara.CoreLayer.Services.Authors;
 using KetabSara.CoreLayer.Services.Books;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ketabSara.Areas.Admin.Controllers
 {
@@ -9,38 +12,59 @@ namespace ketabSara.Areas.Admin.Controllers
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
-
-        public BookController(IBookService bookService)
+        private readonly IAuthorService _authorService;
+        public BookController(IBookService bookService, IAuthorService authorService)
         {
             _bookService = bookService;
+            _authorService = authorService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var bookList = await _bookService.GetBooks();
-            List<BookViewModel> books = new List<BookViewModel>();
-            foreach (var book in bookList)
+            var bookList = await _bookService.GetBookWithAuthors();
+            List<BookWithAuthorViewModel>  books = new List<BookWithAuthorViewModel>();
+            foreach (var bookWithAuthorDto in bookList)
             {
-                books.Add(new BookViewModel()
+                var book = new BookWithAuthorViewModel()
                 {
-                    Id = book.Id,
-                    Title = book.Title,
-                    price = book.Price
-                });
+                    Title = bookWithAuthorDto.Title,
+                    AuthorName = bookWithAuthorDto.AuthorName,
+                    Description = bookWithAuthorDto.Description,
+                    Id = bookWithAuthorDto.Id,
+                    ImageName = bookWithAuthorDto.ImageName,
+                    Price = bookWithAuthorDto.Price,
+                };
+                books.Add(book);
             }
 
             return View(books);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var authors = await _authorService.GetAuthors();
+            var authorViewModels = authors
+                .Select(a => new AuthorViewModel
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Family = a.Family,
+                })
+                .ToList();
+
+            var model = new CreateBookViewModel
+            {
+                AuthorsSelectList = new SelectList(authorViewModels, "Id", "FullName")
+            };
+
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> CreateBook(CreateBookViewModel bookViewModel)
         {
             if (!ModelState.IsValid)
             {
+
                 return View("Create",bookViewModel);
             }
 
@@ -49,7 +73,7 @@ namespace ketabSara.Areas.Admin.Controllers
                 Title = bookViewModel.Title,
                 Price = bookViewModel.Price,
                 Description = bookViewModel.Description,
-                Author = bookViewModel.Author,
+                AuthorId = bookViewModel.AuthorId,
                 ImageName = "test",
             };
             await _bookService.Create(bookDto);

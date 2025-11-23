@@ -22,7 +22,7 @@ namespace ketabSara.Areas.Admin.Controllers
         {
             var dashboardViewModel = new AdminDashboardViewModel
             {
-                BookDtos =await _bookService.GetBooks(),
+                BookDtos =await _bookService.GetBookWithAuthors(),
                 AuthorDtos = await _authorService.GetAuthors(),
             };
             return View(dashboardViewModel);

@@ -41,7 +41,7 @@ namespace KetabSara.DataLayer.Repositories.Book;
 
         public async Task<IEnumerable<Models.Book>> getAllBooks()
         {
-            return await _context.Books.ToListAsync();
+            return await _context.Books.Include(b => b.Author).ToListAsync();
         }
 
         public async Task<Models.Book> findBookBy(int id)

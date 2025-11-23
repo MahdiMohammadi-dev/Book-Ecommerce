@@ -1,5 +1,4 @@
 ﻿using KetabSara.DataLayer.Context;
-using KetabSara.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace KetabSara.DataLayer.Repositories.Author;

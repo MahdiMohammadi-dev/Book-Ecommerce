@@ -21,6 +21,7 @@ public class BookService : IBookService
             Title = createBookDto.Title,
             Description = createBookDto.Description,
             Price = createBookDto.Price,
+            AuthorId = createBookDto.AuthorId,
             ImageName = createBookDto.ImageName,
         };
         await _bookRepository.Create(bookDto);
@@ -33,7 +34,7 @@ public class BookService : IBookService
         if (book == null)
             return new OperationResult(false, "کتابی برابر با مقدار انتخاب شده وجود ندارد");
         book.Title = editBookDto.Title;
-        book.Description = editBookDto.Title;
+        book.Description = editBookDto.Description;
         book.Price = editBookDto.Price;
         await _bookRepository.Edit(book);
         return new OperationResult(true, "کتاب با موفقیت ویرایش شد");
@@ -72,6 +73,21 @@ public class BookService : IBookService
             Description = book.Description,
             Price = book.Price,
         }).ToList();
+        return result;
+    }
+
+    public async Task<IEnumerable<BookWithAuthorDto>> GetBookWithAuthors()
+    {
+        var books =await _bookRepository.getAllBooks();
+        var result = books.Select(x => new BookWithAuthorDto()
+        {
+            Id = x.Id,
+            Title = x.Title,
+            Description = x.Description,
+            AuthorName = x.Author != null ? $"{x.Author.Name} {x.Author.Family}" : "ناشناس",
+            ImageName = x.ImageName,
+            Price = x.Price
+        });
         return result;
     }
 }

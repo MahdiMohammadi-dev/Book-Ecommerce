@@ -55,5 +55,40 @@ namespace ketabSara.Areas.Admin.Controllers
            await _authorService.Create(author);
            return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int id)
+        {
+            var entity = _authorService.GetAuthorById(id);
+            if (entity == null)
+                return NotFound();
+
+            var viewModel = new EditAuthorViewModel()
+            {
+                Id = entity.Id,
+                Name = entity.Result.Name,
+                Family = entity.Result.Family,
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditAuthor(EditAuthorViewModel authorViewModel)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", authorViewModel);
+            }
+            var editAuthor = new EditAuthorDto()
+            {
+                Id = authorViewModel.Id,
+                Name = authorViewModel.Name,
+                Family = authorViewModel.Family
+            };
+            await _authorService.Edit(editAuthor);
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

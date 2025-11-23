@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace KetabSara.DataLayer.Models;
+﻿namespace KetabSara.DataLayer.Models;
 
 public class Author
 {

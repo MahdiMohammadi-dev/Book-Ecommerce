@@ -10,5 +10,4 @@ public interface IAuthorService
     Task<OperationResult> Delete(int id);
     Task<AuthorDto> GetAuthorById(int id);
     Task<IEnumerable<AuthorDto>> GetAuthors();
-
 }

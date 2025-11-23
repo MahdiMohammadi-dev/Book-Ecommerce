@@ -11,9 +11,15 @@
                         <input type="text" class="form-control" placeholder="عنوان کتاب" asp-for="Title">
                         <span asp-validation-for="Title" class="text-danger mt-4"></span>
                         <br />
-                        <label class="form-label" asp-for="Author"></label>
-                        <input type="text" class="form-control" placeholder="نویسنده کتاب" asp-for="Author">
-                        <span asp-validation-for="Author" class="text-danger mt-4"></span>
+                        <div class="mb-3">
+                            <label asp-for="AuthorId" class="form-label">انتخاب پیش فرض</label>
+                            <select asp-for="AuthorId" 
+                                    asp-items="Model.AuthorsSelectList" 
+                                    class="form-control">
+                                <option value="">-- انتخاب نویسنده --</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="AuthorId" class="text-danger mt-4"></span>
                         <br />
                         <label class="form-label" asp-for="Price"></label>
                         <input type="text" class="form-control" placeholder="قیمت کتاب" asp-for="Price">

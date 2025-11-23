@@ -32,6 +32,7 @@ public class AuthorService : IAuthorService
         var dto = await _authorRepository.getAuthorById(authorDto.Id);
         if (dto == null)
             return new OperationResult(false, "نویسنده یافت نشد");
+        dto.Id = authorDto.Id;
         dto.Name = authorDto.Name;
         dto.Family = authorDto.Family;
        await _authorRepository.Edit(dto);

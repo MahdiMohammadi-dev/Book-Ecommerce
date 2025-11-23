@@ -1,4 +1,4 @@
-﻿@model List<ketabSara.Areas.Admin.Models.Book.BookViewModel>
+﻿@model List<ketabSara.Areas.Admin.Models.Book.BookWithAuthorViewModel>
 
 
 @{
@@ -34,9 +34,9 @@
                         <tr>
                             <td>@bookViewModel.Id</td>
                             <td>@bookViewModel.Title</td>
-                            <td>گابریل گارسیا مارکز</td>
+                            <td>@bookViewModel.AuthorName</td>
                             <td>
-                                @bookViewModel.price تومان
+                                @bookViewModel.Price تومان
                             </td>
                             <td>
                                 <div class="dropdown">

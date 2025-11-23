@@ -10,4 +10,7 @@ public interface IBookService
     Task<OperationResult> Delete(int id);
     Task<BookDto> GetBookById(int id);
     Task<IEnumerable<BookDto>> GetBooks();
+
+    Task<IEnumerable<BookWithAuthorDto>> GetBookWithAuthors();
+
 }
