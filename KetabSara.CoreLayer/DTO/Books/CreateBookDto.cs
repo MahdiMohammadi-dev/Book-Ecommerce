@@ -1,4 +1,6 @@
-﻿namespace KetabSara.CoreLayer.DTO.Books;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace KetabSara.CoreLayer.DTO.Books;
 
 public class CreateBookDto
 {
@@ -6,5 +8,5 @@ public class CreateBookDto
     public string Description { get; set; }
     public int Price { get; set; }
     public int AuthorId { get; set; }
-    public string ImageName { get; set; }
+    public IFormFile ImageName { get; set; }
 }

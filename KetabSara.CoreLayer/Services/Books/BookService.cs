@@ -1,4 +1,5 @@
 ﻿using KetabSara.CoreLayer.DTO.Books;
+using KetabSara.CoreLayer.Services.FileUpload;
 using KetabSara.CoreLayer.Utilities;
 using KetabSara.DataLayer.Models;
 using KetabSara.DataLayer.Repositories.Book;
@@ -8,21 +9,24 @@ namespace KetabSara.CoreLayer.Services.Books;
 public class BookService : IBookService
 {
     private readonly IBookRepository _bookRepository;
+    private readonly IFileUploadService _fileUploadService;
 
-    public BookService(IBookRepository bookRepository)
+    public BookService(IBookRepository bookRepository, IFileUploadService fileUploadService)
     {
         _bookRepository = bookRepository;
+        _fileUploadService = fileUploadService;
     }
 
     public async Task<OperationResult> Create(CreateBookDto createBookDto)
     {
+        var image = _fileUploadService.UploadFileAsync(createBookDto.ImageName);
         var bookDto = new Book()
         {
             Title = createBookDto.Title,
             Description = createBookDto.Description,
             Price = createBookDto.Price,
             AuthorId = createBookDto.AuthorId,
-            ImageName = createBookDto.ImageName,
+            ImageName = image.Result
         };
         await _bookRepository.Create(bookDto);
         return new OperationResult(true, "کتاب با موفقیت اضافه شد");

@@ -22,6 +22,9 @@ namespace ketabSara.Areas.Admin.Models.Book
         [Required(ErrorMessage = "لطفا {0}  را وارد کنید")]
         [Display(Name = "قیمت کتاب")]
         public int Price { get; set; }
+        [Required(ErrorMessage = "لطفا {0}  را وارد کنید")]
+        [Display(Name = "عکس کتاب")]
+        public IFormFile Img { get; set; }
 
     }
 }

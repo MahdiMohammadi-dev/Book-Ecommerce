@@ -5,6 +5,7 @@ using KetabSara.CoreLayer.Services.Authors;
 using KetabSara.CoreLayer.Services.Books;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Packaging.Signing;
 
 namespace ketabSara.Areas.Admin.Controllers
 {
@@ -64,9 +65,25 @@ namespace ketabSara.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var authors = await _authorService.GetAuthors();
+                var authorViewModels = authors
+                    .Select(a => new AuthorViewModel
+                    {
+                        Id = a.Id,
+                        Name = a.Name,
+                        Family = a.Family,
+                    })
+                    .ToList();
+
+                var model = new CreateBookViewModel
+                {
+                    AuthorsSelectList = new SelectList(authorViewModels, "Id", "FullName")
+                };
+                bookViewModel.AuthorsSelectList = model.AuthorsSelectList;
 
                 return View("Create",bookViewModel);
             }
+            
 
             var bookDto = new CreateBookDto()
             {
@@ -74,7 +91,7 @@ namespace ketabSara.Areas.Admin.Controllers
                 Price = bookViewModel.Price,
                 Description = bookViewModel.Description,
                 AuthorId = bookViewModel.AuthorId,
-                ImageName = "test",
+                ImageName = bookViewModel.Img
             };
             await _bookService.Create(bookDto);
             return RedirectToAction("Index");
