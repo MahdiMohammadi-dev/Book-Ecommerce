@@ -1,4 +1,7 @@
-﻿ <!-- header -->
+﻿@model List<BookViewModel>
+
+
+<!-- header -->
 <header class="myHeader">
     <div class="headerItems">
         <h1>
@@ -19,104 +22,4 @@
 
 
 <!-- books -->
-<div class="BooksContainer">
-
-    <div class="bookItem">
-        <div class="bookDetails">
-            <img src="/MainWebTemplate/asstes/img/9780063317475.webp" class="imgBook">
-            <div>
-                <h3>
-                    من به شما نشان خواهم داد که چگونه بود: داستان کیف در زمان جنگ
-                </h3>
-                <p>
-                    Illia Ponomarenko
-                </p>
-                <p> 15,000 تومان </p>
-
-            </div>
-        </div>
-
-        <a href="book.html" style="text-decoration : none" class="cartBtn">
-            مشاهده
-        </a>
-    </div>
-
-    <div class="bookItem">
-        <div class="bookDetails">
-            <img src="/MainWebTemplate/asstes/img/9780143137894.webp" class="imgBook">
-            <div>
-                <h3>
-                    من به شما نشان خواهم داد که چگونه بود: داستان کیف در زمان جنگ
-                </h3>
-                <p>
-                    Illia Ponomarenko
-                </p>
-                <p> 15,000 تومان </p>
-
-            </div>
-        </div>
-
-        <a href="book.html" style="text-decoration : none" class="cartBtn">
-            مشاهده
-        </a>
-    </div>
-    <div class="bookItem">
-        <div class="bookDetails">
-            <img src="/MainWebTemplate/asstes/img/9781620401620.jpg" class="imgBook">
-            <div>
-                <h3>
-                    من به شما نشان خواهم داد که چگونه بود: داستان کیف در زمان جنگ
-                </h3>
-                <p>
-                    Illia Ponomarenko
-                </p>
-                <p> 15,000 تومان </p>
-
-            </div>
-        </div>
-
-        <a href="book.html" style="text-decoration : none" class="cartBtn">
-            مشاهده
-        </a>
-    </div>
-    <div class="bookItem">
-        <div class="bookDetails">
-            <img src="/MainWebTemplate/asstes/img/9781668006498.jpg" class="imgBook">
-            <div>
-                <h3>
-                    من به شما نشان خواهم داد که چگونه بود: داستان کیف در زمان جنگ
-                </h3>
-                <p>
-                    Illia Ponomarenko
-                </p>
-                <p> 15,000 تومان </p>
-
-            </div>
-        </div>
-
-        <a href="book.html" style="text-decoration : none" class="cartBtn">
-            مشاهده
-        </a>
-    </div>
-    <div class="bookItem">
-        <div class="bookDetails">
-            <img src="/MainWebTemplate/asstes/img/9781982120344.webp" class="imgBook">
-            <div>
-                <h3>
-                    من به شما نشان خواهم داد که چگونه بود: داستان کیف در زمان جنگ
-                </h3>
-                <p>
-                    Illia Ponomarenko
-                </p>
-                <p> 15,000 تومان </p>
-
-            </div>
-        </div>
-
-        <a href="book.html" style="text-decoration : none" class="cartBtn">
-            مشاهده
-        </a>
-    </div>
-
-
-</div>
+@await Component.InvokeAsync("HomeBook",Model)

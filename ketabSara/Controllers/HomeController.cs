@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using KetabSara.CoreLayer.Services.Books;
 using ketabSara.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +6,33 @@ namespace ketabSara.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IBookService _bookService;
+
+        public HomeController(IBookService bookService)
         {
-            _logger = logger;
+            _bookService = bookService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View("Index");
+            var list = await _bookService.GetBookWithAuthors();
+            List<BookViewModel> books = new List<BookViewModel>();
+            foreach (var book in list)
+            {
+                var entity = new BookViewModel()
+                {
+                    Id = book.Id,
+                    Title = book.Title,
+                    Price = (int)book.Price,
+                    ImageName = book.ImageName,
+                    AuthorName = book.AuthorName,
+                    Description = book.Description
+                };
+                books.Add(entity);
+            }
+
+            return View("Index",books);
         }
 
         public IActionResult AllProducts()

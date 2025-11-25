@@ -1,0 +1,31 @@
+﻿@model List<BookViewModel>
+
+<div class="BooksContainer">
+
+    @{
+        foreach (var bookViewModel in Model)
+        {
+            <div class="bookItem">
+                <div class="bookDetails">
+                    <img src="~/uploads/@bookViewModel.ImageName" class="imgBook">
+                    <div>
+                        <h3>
+                            @bookViewModel.Title
+                        </h3>
+                        <p>
+                            @bookViewModel.AuthorName
+                        </p>
+                        <p> @bookViewModel.Price تومان </p>
+
+                    </div>
+                </div>
+
+                <a href="book.html" style="text-decoration : none" class="cartBtn">
+                    مشاهده
+                </a>
+            </div>
+        }
+    }
+
+
+</div>
