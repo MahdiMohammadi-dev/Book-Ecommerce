@@ -15,18 +15,17 @@ namespace ketabSara.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
-        public IActionResult Privacy()
+        public IActionResult AllProducts()
         {
+
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult ContactUs()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }
