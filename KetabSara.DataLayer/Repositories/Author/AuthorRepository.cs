@@ -36,6 +36,7 @@ public class AuthorRepository : IAuthorRepository
             return null;
         var model = new Models.Author()
         {
+            Id = entity.Id,
             Name = entity.Name,
             Family = entity.Family
         };
@@ -49,7 +50,7 @@ public class AuthorRepository : IAuthorRepository
 
     public async Task Delete(int id)
     {
-        var entity = _context.Authors.FirstOrDefault(x => x.Id == id);
+        var entity = await _context.Authors.FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null)
             return;
 

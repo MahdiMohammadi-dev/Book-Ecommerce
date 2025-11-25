@@ -32,7 +32,7 @@ namespace KetabSara.DataLayer.Repositories.Book;
 
         public async Task Delete(int id)
         {
-            var entity = _context.Books.FirstOrDefault(x => x.Id == id);
+            var entity =await _context.Books.FirstOrDefaultAsync(x => x.Id == id);
             if (entity == null)
                 return;
             _context.Books.Remove(entity);

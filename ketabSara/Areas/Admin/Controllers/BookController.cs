@@ -96,5 +96,12 @@ namespace ketabSara.Areas.Admin.Controllers
             await _bookService.Create(bookDto);
             return RedirectToAction("Index");
         }
+
+        
+        public async Task<IActionResult> Delete(int id)
+        {
+           await _bookService.Delete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

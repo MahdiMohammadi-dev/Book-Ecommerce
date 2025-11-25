@@ -49,7 +49,7 @@ public class BookService : IBookService
         var book =await _bookRepository.findBookBy(id);
         if (book == null)
             return new OperationResult(false, "کتابی برابر با مقدار انتخاب شده وجود ندارد");
-        _bookRepository.Delete(book.Id);
+       await _bookRepository.Delete(book.Id);
         return new OperationResult(true, "کتاب با موفقیت حذف شد");
     }
 

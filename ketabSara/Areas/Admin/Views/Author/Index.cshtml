@@ -43,7 +43,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" asp-area="Admin" asp-controller="Author" asp-action="Edit" asp-route-id="@auhtorViewModel.Id"><i class="bx bx-edit-alt me-1"></i> ویرایش</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> حذف</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Author" asp-action="Delete" asp-route-id="@auhtorViewModel.Id"><i class="bx bx-trash me-1"></i> حذف</a>
                                     </div>
                                 </div>
                             </td>

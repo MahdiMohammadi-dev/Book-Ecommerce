@@ -90,5 +90,11 @@ namespace ketabSara.Areas.Admin.Controllers
 
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _authorService.Delete(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }
