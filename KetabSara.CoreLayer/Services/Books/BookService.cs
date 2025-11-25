@@ -63,7 +63,8 @@ public class BookService : IBookService
             Title = book.Title,
             Description = book.Description,
             Price = book.Price,
-            Id = book.Id
+            Id = book.Id,
+            ImageName = book.ImageName,
         };
         return bookDto;
     }

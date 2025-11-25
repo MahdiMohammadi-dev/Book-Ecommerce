@@ -1,0 +1,27 @@
+﻿@model BookViewModel
+
+<div class="headerItems">
+    <h1>
+        @Model.Title
+    </h1>
+    <p>
+        @Model.Description
+    </p>
+    <p>
+        @Model.AuthorName
+    </p>
+
+    <div class="bookPrice">
+        <input id="bookIntPrice" type="hidden" value="@Model.Price">
+        <strong id="bookShowPrice"> @Model.Price تومان </strong>
+        <div>
+            تعداد : <input id="countInput" type="number" min="1" value="1">
+
+        </div>
+    </div>
+
+
+    <a href="checkout.html" class="cartBtn atext" style="margin-top: 15px;">
+        افزودن به سبد
+    </a>
+</div>
