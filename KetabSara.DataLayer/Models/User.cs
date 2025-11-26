@@ -11,5 +11,6 @@ namespace KetabSara.DataLayer.Models
     {
         public string? FullName { get; set; }
 
+       
     }
 }
