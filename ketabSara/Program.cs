@@ -1,5 +1,7 @@
 using KetabSara.CoreLayer.Config;
 using KetabSara.DataLayer.Context;
+using KetabSara.DataLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,24 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 builder.Services.AddApplicationService();
 
+builder.Services.AddIdentity<User, Role>(option =>
+    {
+        option.Password.RequireDigit = false;
+        option.Password.RequireLowercase = false;
+        option.Password.RequireNonAlphanumeric = false;
+        option.Password.RequireUppercase = false;
+        option.Password.RequiredLength = 8;
+        option.Password.RequiredUniqueChars = 0;
+
+
+        option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        option.Lockout.MaxFailedAccessAttempts = 5;
+        option.Lockout.AllowedForNewUsers = true;
+        option.User.RequireUniqueEmail = true;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddSignInManager<SignInManager<User>>()
+    .AddDefaultTokenProviders();
 
 
 var app = builder.Build();

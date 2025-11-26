@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KetabSara.CoreLayer.Services.Authors;
+﻿using KetabSara.CoreLayer.Services.Authors;
 using KetabSara.CoreLayer.Services.Books;
 using KetabSara.CoreLayer.Services.FileUpload;
 using KetabSara.DataLayer.Repositories.Author;
 using KetabSara.DataLayer.Repositories.Book;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+
+
 
 namespace KetabSara.CoreLayer.Config
 {
@@ -28,7 +26,8 @@ namespace KetabSara.CoreLayer.Config
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IFileUploadService, FileUploadService>();
-
+            
+            
 
 
             return services;
