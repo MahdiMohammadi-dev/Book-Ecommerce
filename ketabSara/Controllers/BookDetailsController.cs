@@ -29,5 +29,11 @@ namespace ketabSara.Controllers
             };
             return View("BookDetails",bookVm);
         }
+
+        public async Task<IActionResult> BookList(int page = 1,int pageItem = 2 , string search = null )
+        {
+            var data =await _bookService.GetBookPagination(page, pageItem, search);
+            return View(data);
+        }
     }
 }

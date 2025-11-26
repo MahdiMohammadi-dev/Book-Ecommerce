@@ -12,5 +12,6 @@ public interface IBookService
     Task<IEnumerable<BookDto>> GetBooks();
 
     Task<IEnumerable<BookWithAuthorDto>> GetBookWithAuthors();
+    Task<PaginationBookDto> GetBookPagination(int page, int PageItems, string? searchFiled);
 
 }

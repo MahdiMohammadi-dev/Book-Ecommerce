@@ -34,7 +34,7 @@ public class BookService : IBookService
 
     public async Task<OperationResult> Edit(EditBookDto editBookDto)
     {
-        var book =await _bookRepository.findBookBy(editBookDto.Id);
+        var book = await _bookRepository.findBookBy(editBookDto.Id);
         if (book == null)
             return new OperationResult(false, "کتابی برابر با مقدار انتخاب شده وجود ندارد");
         book.Title = editBookDto.Title;
@@ -46,16 +46,16 @@ public class BookService : IBookService
 
     public async Task<OperationResult> Delete(int id)
     {
-        var book =await _bookRepository.findBookBy(id);
+        var book = await _bookRepository.findBookBy(id);
         if (book == null)
             return new OperationResult(false, "کتابی برابر با مقدار انتخاب شده وجود ندارد");
-       await _bookRepository.Delete(book.Id);
+        await _bookRepository.Delete(book.Id);
         return new OperationResult(true, "کتاب با موفقیت حذف شد");
     }
 
     public async Task<BookDto> GetBookById(int id)
     {
-        var book =await _bookRepository.findBookBy(id);
+        var book = await _bookRepository.findBookBy(id);
         if (book == null)
             return null;
         var bookDto = new BookDto()
@@ -77,13 +77,14 @@ public class BookService : IBookService
             Title = book.Title,
             Description = book.Description,
             Price = book.Price,
+            AuthorName = $"{book.Author.Name} {book.Author.Family}"
         }).ToList();
         return result;
     }
 
     public async Task<IEnumerable<BookWithAuthorDto>> GetBookWithAuthors()
     {
-        var books =await _bookRepository.getAllBooks();
+        var books = await _bookRepository.getAllBooks();
         var result = books.Select(x => new BookWithAuthorDto()
         {
             Id = x.Id,
@@ -93,6 +94,39 @@ public class BookService : IBookService
             ImageName = x.ImageName,
             Price = x.Price
         });
+        return result;
+    }
+
+    public async Task<PaginationBookDto> GetBookPagination(int page, int PageItems, string? searchFiled)
+    {
+        var books = await _bookRepository.getAllBooks();
+        if (!string.IsNullOrEmpty(searchFiled))
+        {
+            books = books.Where(x => x.Title.Contains(searchFiled));
+        }
+
+        int totalCount = books.Count();
+
+        int totalPage = (int)Math.Ceiling((double)totalCount / PageItems);
+
+        books = books.Skip((page - 1) * PageItems).Take(PageItems).ToList();
+
+        var bookDtos = books.Select(x => new BookDto()
+        {
+            Title = x.Title,
+            Description = x.Description,
+            Price = x.Price,
+            ImageName = x.ImageName,
+            Id = x.Id,
+            AuthorName = $"{x.Author.Name} {x.Author.Family}"
+        }).ToList();
+        var result = new PaginationBookDto()
+        {
+            BookDtos = bookDtos,
+            Page = page,
+            TotalPages = totalPage
+        };
+
         return result;
     }
 }
