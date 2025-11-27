@@ -2,6 +2,8 @@
 using KetabSara.CoreLayer.Services.Books;
 using KetabSara.CoreLayer.Services.FileUpload;
 using KetabSara.DataLayer.Repositories.Author;
+using KetabSara.DataLayer.Repositories.Basket;
+using KetabSara.DataLayer.Repositories.BasketItems;
 using KetabSara.DataLayer.Repositories.Book;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,8 @@ namespace KetabSara.CoreLayer.Config
             services.AddTransient<IAuthorService, AuthorService>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IFileUploadService, FileUploadService>();
+            services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddTransient<IBasketItemRepository, BasketItemRepository>();
             
             
 
