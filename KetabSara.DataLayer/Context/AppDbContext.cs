@@ -12,7 +12,8 @@ public class AppDbContext:IdentityDbContext<User,Role,int>
 
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
-
+    public DbSet<Basket> Baskets { get; set; }
+    public DbSet<BasketItems> BasketItems { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
