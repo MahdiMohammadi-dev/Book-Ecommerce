@@ -1,5 +1,6 @@
 using KetabSara.CoreLayer.Services.Books;
 using ketabSara.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ketabSara.Controllers
@@ -40,6 +41,7 @@ namespace ketabSara.Controllers
 
             return View();
         }
+        [Authorize]
         public IActionResult ContactUs()
         {
             return View();

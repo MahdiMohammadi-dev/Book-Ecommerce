@@ -1,4 +1,8 @@
-﻿<nav class="nav">
+﻿@using KetabSara.DataLayer.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> _SignInManager;
+
+<nav class="nav">
 
 
     <div class="mobileNav hidden">
@@ -11,7 +15,17 @@
         <a asp-controller="Home" asp-action="Index"> خانه </a>
         <a class="atext" asp-controller="BookDetails" asp-action="BookList"> محصولات </a>
         <a class="atext" asp-controller="Home" asp-action="ContactUs"> درباره با ما </a>
-        <a class="atext" asp-controller="Auth" asp-action="LoginIndex"> ورود</a>
+        @{
+            if (_SignInManager.IsSignedIn(User))
+            {
+                <a class="atext" asp-controller="Auth" asp-action="LogOut"> خروج</a>
+            }
+            else
+            {
+                <a class="atext" asp-controller="Auth" asp-action="LoginIndex"> ورود</a>
+
+            }
+        }
     </div>
 
 
